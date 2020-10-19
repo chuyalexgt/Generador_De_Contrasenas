@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Generador De Contraseñas</title>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>  
+    <script>
+        var tamaño_pass
+        var letras_minusculas = ["a","b","c","d","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+        var letras_mayusculas = ["A","B","C","D","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+        var numeros = ["1","2","3","4","5","6","7","8","9","0",]
+        var caract_especiales = ["!","#",".","$","%","&","+","-","_",]
+        var caracteres = letras_mayusculas.concat(letras_minusculas,numeros,caract_especiales)
+        var i = 0
+
+        function generarContraseña(length_pass){
+            let password = ""
+            for (let count = 0; count <= length_pass; count++){
+                password = password + caracteres[Math.floor(Math.random() * caracteres.length)]
+            }
+            return password
+        }
+   
+        swal({
+        content: {
+        element: "input",
+        attributes: {
+            placeholder: "Tamaño de la contraseña",
+            type: "text",
+            },
+        },
+        }).then((value) =>{
+        if (isNaN(value)){
+            location.reload();
+        }
+        tamaño_pass = value
+        let contraseña_generada = generarContraseña(tamaño_pass)
+        swal("Generador De Contraseñas", `Tu contraseña es \n \t ${contraseña_generada}`  , "success")
+        })
+    
+
+    
+
+    
+
+        
+
+
+    </script>
+  </body>
+</html>
